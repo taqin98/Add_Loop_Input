@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title><?php echo $title; ?></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+ 
+    <div class="container">
+        <div class="row">
+            <div class="box-header with-border">
+                <div class="text-center">
+                    <h2 align="center">Loop Input</h2>
+                    <h3 class="box-title"></h3>
+                </div>
+            </div>
+            <div class="col-md-12" style="margin: 10px;">
+                <div class="box box-solid">
+                    <div class="box-body">
+                        <blockquote>
+                            <p><h>Keterangan!!</h></p>
+                            <small><cite title="Source Title">Inputan Yang Ditanda Bintang Merah (<span style="color: red;">*</span>) Harus Di Isi !!</cite></small>
+                        </blockquote>
+                    </div>
+                </div>
+                <br>
+                <div class="col-md-12">
+                    <table class="table table-bordered" id="tableLoop">
+                        <thead>
+                            <tr>
+                                <th class="text-center">#</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th><button class="btn btn-success btn-block" id="BarisBaru"><i class="fa fa-plus"></i> Baris Baru</button></th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.2.2/bootstrap.min.js"></script>
+ 
+ 
+    <script type="text/javascript">
+        $(document).ready(function() {
+            for (B=1; B<=1; B++) {
+                Barisbaru();
+            }
+            $('#BarisBaru').click(function(e) {
+                e.preventDefault();
+                Barisbaru();
+            });
+ 
+            $("tableLoop tbody").find('input[type=text]').filter(':visible:first').focus();
+        });
+        function Barisbaru() {
+            console.log('e')
+            $(document).ready(function() {
+                $("[data-toggle='tooltip'").tooltip();
+            });
+            var Nomor = $("#tableLoop tbody tr").length + 1;
+            var Baris = '<tr>';
+                    Baris += '<td class="text-center">'+Nomor+'</td>';
+                    Baris += '<td>';
+                        Baris += '<input type="text" name="first_name[]" class="form-control" placeholder="First Name..." required="">';
+                    Baris += '</td>';
+                    Baris += '<td>';
+                        Baris += '<input type="text" name="last_name[]" class="form-control" placeholder="Last Name..." required="">';
+                    Baris += '</td>';
+                    Baris += '<td class="text-center">';
+                        Baris += '<a class="btn btn-sm btn-danger" data-toggle="tooltip" title="Hapus Baris"><i class="fa fa-times"></i></a>';
+                    Baris += '</td>';
+                Baris += '</tr>';
+ 
+            $("#tableLoop tbody").append(Baris);
+            $("#tableLoop tbody tr").each(function () {
+                $(this).find('td:nth-child(2) input').focus(); 
+            });
+        }
+    </script>
+</html>
